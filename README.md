@@ -142,5 +142,7 @@ Usage: <class_name>.update(<_id>, <dictionary>)
 <br>
 
 # AUTHORS
+Ezra Nobrega <ezra.nobrega@outlook.com><br>
+Justin Majetich <justinmajetich@gmail.com><br>
 Biruk Galeicha <byafet3@gmail.com><br>
 Olusegun Mayungbe <o.mayungbe@oluadepefarms.com><br>
