@@ -1,28 +1,31 @@
 #!/usr/bin/python3
-"""Starts Flask web app
-Listening on 0.0.0.0:5000
-Route '/' displays "Hello HBNB!"
+"""
+file: 2-c_route.py
+desc: This module runs a simple flask app.
+Date Created: Nov 10, 2022
 """
 from flask import Flask
 
 app = Flask(__name__)
 
 
-@app.route('/', strict_slashes=False)
-def hello_route():
-    """Displays 'Hello HBNB!'"""
+@app.route("/", strict_slashes=False)
+def hello_hbnb():
+    """Displays 'Hello HBNB! from the root path"""
     return "Hello HBNB!"
 
-@app.route('/hbnb', strict_slashes=False)
+
+@app.route("/hbnb", strict_slashes=False)
 def hbnb():
-    """prints HBNB"""
+    """Displays 'HBNB' from the /hbnb path"""
     return "HBNB"
 
-@app.route('/c/<string:text>', strict_slash=False)
-def c_text(text):
-    """prints C followed by <text> content"""
-    text = text.replace("_", " ")
-    return "C %s" % text
+
+@app.route("/c/<text>", strict_slashes=False)
+def ctext(text):
+    """Displays C <text>, replaces any _ with space"""
+    return "C {}".format(text.replace("_", " "))
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
