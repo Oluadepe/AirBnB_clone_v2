@@ -17,9 +17,14 @@ class State(BaseModel, Base):
     
     @property
     def cities(self):
-        """Get a list of all related City objects."""
-        city_list = []
-        for city in list(models.storage.all(City).values()):
+        '''returns the list of City instances with state_id
+                equals the current State.id
+                FileStorage relationship between State and City
+        '''
+        from models import storage
+        related_cities = []
+        cities = storage.all(City)
+        for city in cities.values():
             if city.state_id == self.id:
-                city_list.append(city)
-        return city_list
+                related_cities.append(city)
+        return related_cities
