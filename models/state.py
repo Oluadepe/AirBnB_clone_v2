@@ -12,9 +12,13 @@ from os import getenv
 class State(BaseModel, Base):
     """ State class definition in the next line"""
     __tablename__ = 'states'
-    name = Column(String(128), nullable=False)
-    cities = relationship('City', backref='state', cascade="all, delete")
-    
+    if storage_type == 'db':
+        name = Column(String(128), nullable=False)
+        cities = relationship('City', backref='state', cascade="all, delete")
+    else:
+        name = ''
+
+
     @property
     def cities(self):
         '''returns the list of City instances with state_id
