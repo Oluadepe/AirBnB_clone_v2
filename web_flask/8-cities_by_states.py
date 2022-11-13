@@ -2,7 +2,7 @@
 """
 file: 8-cities_by_states.py
 Desc: This python module executes simple flask application.
-Date Created: Nov 12, 2022
+Date Created: Nov 13, 2022
 """
 from models import storage
 from flask import Flask, render_template
