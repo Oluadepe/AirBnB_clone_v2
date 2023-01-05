@@ -4,8 +4,8 @@ using the function do_deploy"""
 from os.path import exists
 from fabric.api import run, put, env
 
-env.hosts = ["54.90.43.119", "100.26.232.133"]
-
+env.hosts = ["34.229.49.169", "54.162.223.76"]
+env.key_filename = '~/.ssh/id_rsa'
 
 def do_deploy(archive_path):
     """Deployes the archive to the webserver"""
@@ -34,20 +34,16 @@ def do_deploy(archive_path):
     if run("rm /tmp/{}".format(full_name)).failed is True:
         return False
 
-    if run("mv /data/web_static/releases/{}/web_static/* "
-           "/data/web_static/releases/{}/".format(file_name, file_name)
-           ).failed is True:
+    if run("mv /data/web_static/releases/{}/web_static/* /data/web_static/releases/{}/".format(file_name, file_name)).failed is True:
         return False
 
-    if run("rm -rf /data/web_static/releases/{}/web_static".
-           format(file_name)).failed is True:
+    if run("rm -rf /data/web_static/releases/{}/web_static".format(file_name)).failed is True:
         return False
 
     if run("rm -rf /data/web_static/current").failed is True:
         return False
 
-    if run("ln -s /data/web_static/releases/{}/ /data/web_static/current".
-           format(file_name)).succeeded is False:
+    if run("ln -s /data/web_static/releases/{}/ /data/web_static/current".format(file_name)).succeeded is False:
         return False
 
     return True
