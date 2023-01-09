@@ -28,18 +28,33 @@ def do_deploy(archive_path):
         return False
 
     # Remove the existing directory
-    if run("rm -rf /data/web_static/releases/{}/".format(file_name)).failed:
+    result = run("sudo rm -rf /data/web_static/releases/{}/".format(file_name))
+    if result.failed:
         logging.error("Failed to remove existing directory")
+        logging.error("Command: %s", result.command)
+        logging.error("Return code: %s", result.return_code)
+        logging.error("Stdout: %s", result.stdout)
+        logging.error("Stderr: %s", result.stderr)
         return False
 
     # Create a new directory
-    if run("mkdir -p /data/web_static/releases/{}/".format(file_name)).failed:
+    result = run("sudo mkdir -p /data/web_static/releases/{}/".format(file_name))
+    if result.failed:
         logging.error("Failed to create new directory")
+        logging.error("Command: %s", result.command)
+        logging.error("Return code: %s", result.return_code)
+        logging.error("Stdout: %s", result.stdout)
+        logging.error("Stderr: %s", result.stderr)
         return False
 
     # Extract the archive file into the new directory
-    if run("tar -xzf /tmp/{} -C /data/web_static/releases/{}/".format(full_name, file_name)).failed:
+    result = run("sudo tar -xzf /tmp/{} -C /data/web_static/releases/{}/".format(full_name, file_name))
+    if result.failed:
         logging.error("Failed to extract archive file")
+        logging.error("Command: %s", result.command)
+        logging.error("Return code: %s", result.return_code)
+        logging.error("Stdout: %s", result.stdout)
+        logging.error("Stderr: %s", result.stderr)
         return False
 
     logging.info("Deployment successful")
