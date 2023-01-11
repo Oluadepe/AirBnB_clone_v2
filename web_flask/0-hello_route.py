@@ -9,10 +9,12 @@ app = Flask(__name__)
 
 
 @app.route('/', strict_slashes=False)
-def idex():
+def index():
     """Displays 'Hello HBNB!'"""
     return "Hello HBNB!"
 
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0")
+@app.route('/airbnb-onepage/')
+def airbnb_onepage():
+    return index()
+
